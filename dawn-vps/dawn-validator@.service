@@ -1,0 +1,26 @@
+[Unit]
+Description=DAWN Validator Chrome runner (official extension, single profile)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=%i
+Environment=DISPLAY_NUM=99
+Environment=DAWN_PROFILE_DIR=%h/.config/dawn-validator
+Environment=DAWN_LOG_DIR=%h/.local/state/dawn-validator
+ExecStart=%h/dawn-vps/run-dawn-validator.sh
+Restart=always
+RestartSec=15
+KillMode=mixed
+TimeoutStopSec=20
+
+# Keep the service unprivileged and avoid putting credentials in the unit.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=%h/.config/dawn-validator %h/.local/state/dawn-validator %h/dawn-vps
+
+[Install]
+WantedBy=default.target
