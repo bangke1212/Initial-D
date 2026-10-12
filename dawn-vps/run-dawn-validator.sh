@@ -70,7 +70,6 @@ while true; do
     --no-default-browser-check \
     --disable-session-crashed-bubble \
     --disable-dev-shm-usage \
-    --disable-background-networking \
     --disable-features=Translate \
     about:blank \
     >>"$LOG_DIR/chrome.log" 2>&1 &
